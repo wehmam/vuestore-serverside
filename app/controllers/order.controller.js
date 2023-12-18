@@ -44,3 +44,22 @@ exports.addToCart = (req, res) => {
         })
     })
 }
+
+exports.removeFromCart = (req, res) => {
+    const id = Number(req.params.id)
+    const productCode = String(req.params.product)
+
+    Order.updateOne({
+        user_id: id
+    }, {
+        $pull: {
+            cart_items: productCode
+        }
+    }).then((result) => {
+        res.send(result)
+    }).catch((err) => {
+        res.status(500).send({
+            message: err.message
+        })
+    })
+}
