@@ -32,7 +32,7 @@ exports.findOrder = (req, res) => {
 
 exports.addToCart = (req, res) => {
     const id = Number(req.params.id)
-    const productCode = String(req.body.product)
+    const productCode = String(req.body.product_code)
 
     Order.updateOne({
         user_id: id
