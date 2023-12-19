@@ -16,6 +16,12 @@ exports.findOrder = (req, res) => {
         }
     }])
     .then((result) => {
+        const baseUrl = `${req.protocol}://${req.get('host')}`;
+        // Add base url on first image url
+        result[0].products.forEach(product => {
+            product.imageUrl = `${baseUrl}${product.imageUrl}`
+        })
+        
         res.send(result)
     }).catch((err) => {
         res.status(500).send({

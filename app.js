@@ -1,12 +1,15 @@
 const express = require('express')
+var cors = require('cors')
 
 const app = express()
 const PORT = 8000
 const path = require('path')
 
 app.use(express.json())
+app.use(cors())
 app.use(express.urlencoded({ extended:true }))
 app.use('/img', express.static(path.join(__dirname, './public/img')))
+
 
 const db = require('./app/models/index')
 db.mongoose
