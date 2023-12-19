@@ -2,9 +2,11 @@ const express = require('express')
 
 const app = express()
 const PORT = 8000
+const path = require('path')
 
 app.use(express.json())
 app.use(express.urlencoded({ extended:true }))
+app.use('/img', express.static(path.join(__dirname, './public/img')))
 
 const db = require('./app/models/index')
 db.mongoose
